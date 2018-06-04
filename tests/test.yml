@@ -1,0 +1,5 @@
+---
+- hosts: switches
+  connection: local
+  roles:
+    - stackhpc.dell-powerconnect-switch

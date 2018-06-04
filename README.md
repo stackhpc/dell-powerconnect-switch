@@ -1,8 +1,12 @@
 Dell PowerConnect Switch
 ========================
 
-This role configures Dell PowerConnect switches using the `expect` Ansible
-module.
+This role configures Dell PowerConnect switches using the
+[expect](http://docs.ansible.com/ansible/latest/modules/expect_module.html?highlight=expect)
+Ansible module.
+
+This role will install the python `expect` package to the system site packages
+on the local machine.
 
 Requirements
 ------------

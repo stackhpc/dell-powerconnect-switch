@@ -16,7 +16,10 @@
          combine(main_responses) |
          combine(config_responses) }}
   register: result
-  failed_when: result.get('rc') != 255 or '% Unrecognized command' in result.stdout_lines
+  failed_when: >-
+    result.get('rc') != 255 or
+    '% Unrecognized command' in result.stdout_lines or
+    result.stdout_lines[-1] != 'Connection to ' ~ dell_powerconnect_switch_provider.host ~ ' closed.'
   vars:
     main_responses: "{{ {dell_powerconnect_main_prompt: ['configure', 'exit']} }}"
     config_responses: "{{ {dell_powerconnect_config_prompt: dell_powerconnect_switch_config + ['exit']} }}"
@@ -31,7 +34,10 @@
          combine(config_responses) |
          combine(interface_responses) }}
   register: result
-  failed_when: result.get('rc') != 255 or '% Unrecognized command' in result.stdout_lines
+  failed_when: >-
+    result.get('rc') != 255 or
+    '% Unrecognized command' in result.stdout_lines or
+    result.stdout_lines[-1] != 'Connection to ' ~ dell_powerconnect_switch_provider.host ~ ' closed.'
   with_dict: "{{ dell_powerconnect_switch_interface_config }}"
   vars:
     main_responses: "{{ {dell_powerconnect_main_prompt: ['configure', 'exit']} }}"

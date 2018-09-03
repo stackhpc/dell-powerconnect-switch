@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: dell-powerconnect-switch
   author: Mark Goddard
   description: >
     Role to configure Dell PowerConnect switches

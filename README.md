@@ -23,7 +23,6 @@ containing the following fields:
 - `host`: the host or IP address of the switch.
 - `username`: the username with which to access the switch via SSH.
 - `auth_pass`: the password with which to authenticate.
-- `dell_powerconnect_switch_interface_type`: this controls <interface type> in commands of the form: interface <interface type> <port>
 
 `dell_powerconnect_switch_config` is a list of configuration lines to apply to
 the switch, and defaults to an empty list.

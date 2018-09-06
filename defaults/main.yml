@@ -10,11 +10,6 @@ dell_powerconnect_switch_config: []
 # should contain a list of per-interface configuration.
 dell_powerconnect_switch_interface_config: {}
 
-# This is required if your switch requires you to enter privilege
-# exec mode to perform switch configuration
-# FIXME: password prompt not currently supported
-dell_powerconnect_switch_enable_privilege_exec: false
-
 # If the switch uses a command of the form: interface <interface type> <port>
 # to configure a port, this variable replaces <interface type> in the above
 # template.

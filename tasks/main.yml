@@ -43,7 +43,8 @@
   with_dict: "{{ dell_powerconnect_switch_interface_config }}"
   vars:
     main_responses: "{{ {dell_powerconnect_main_prompt: ['configure', 'exit']} }}"
-    config_responses: "{{ {dell_powerconnect_config_prompt: ['interface ' ~ item.key, 'exit']} }}"
+    port_type: "{{ dell_powerconnect_port_type ~ ' ' if dell_powerconnect_port_type else '' }}"
+    config_responses: "{{ {dell_powerconnect_config_prompt: ['interface ' ~ port_type ~ item.key, 'exit']} }}"
     # Long config lines seem to confuse expect, so we add two exits.
     interface_responses: >-
       {{ {dell_powerconnect_interface_prompt:

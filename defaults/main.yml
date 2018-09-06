@@ -9,8 +9,3 @@ dell_powerconnect_switch_config: []
 # dicts. Each dict contains a 'description' item and a 'config' item which
 # should contain a list of per-interface configuration.
 dell_powerconnect_switch_interface_config: {}
-
-# If the switch uses a command of the form: interface <interface type> <port>
-# to configure a port, this variable replaces <interface type> in the above
-# template.
-dell_powerconnect_switch_interface_type:

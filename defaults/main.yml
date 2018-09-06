@@ -9,3 +9,8 @@ dell_powerconnect_switch_config: []
 # dicts. Each dict contains a 'description' item and a 'config' item which
 # should contain a list of per-interface configuration.
 dell_powerconnect_switch_interface_config: {}
+
+# This is required if your switch requires you to enter privilege
+# exec mode to perform switch configuration
+# FIXME: password prompt not currently supported
+dell_powerconnect_enable_privilege_exec_mode: false

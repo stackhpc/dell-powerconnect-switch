@@ -2,6 +2,7 @@
 dell_powerconnect_main_prompt: "{{ inventory_hostname }}# "
 dell_powerconnect_config_prompt: "{{ inventory_hostname }}\\(config(-vlan)?\\)# "
 dell_powerconnect_interface_prompt: "{{ inventory_hostname }}\\(config-if\\)# "
+dell_powerconnect_enable_prompt: "{{ inventory_hostname }}> "
 
 dell_powerconnect_auth_responses:
   "User Name:": "{{ dell_powerconnect_switch_provider.username }}"

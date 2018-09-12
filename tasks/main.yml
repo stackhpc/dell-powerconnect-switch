@@ -13,14 +13,17 @@
     command: "ssh {{ ansible_ssh_common_args | default }} {{ dell_powerconnect_switch_provider.username }}@{{ dell_powerconnect_switch_provider.host }}"
     responses: >-
       {{ dell_powerconnect_auth_responses |
+         combine(enable_responses) |
          combine(main_responses) |
          combine(config_responses) }}
   register: result
   failed_when: >-
     result.get('rc') != 255 or
     '% Unrecognized command' in result.stdout_lines or
-    result.stdout_lines[-1] != 'Connection to ' ~ dell_powerconnect_switch_provider.host ~ ' closed.'
+    "% Invalid input detected at '^' marker." in result.stdout_lines or
+    'Connection to ' ~ dell_powerconnect_switch_provider.host ~ ' closed.' not in result.stdout_lines[-1]
   vars:
+    enable_responses: "{{ {dell_powerconnect_enable_prompt: ['enable', 'exit']} }}"
     main_responses: "{{ {dell_powerconnect_main_prompt: ['configure', 'exit']} }}"
     config_responses: "{{ {dell_powerconnect_config_prompt: dell_powerconnect_switch_config + ['exit']} }}"
 
@@ -30,16 +33,19 @@
     command: "ssh {{ ansible_ssh_common_args | default }} {{ dell_powerconnect_switch_provider.username }}@{{ dell_powerconnect_switch_provider.host }}"
     responses: >-
       {{ dell_powerconnect_auth_responses |
+         combine(enable_responses) |
          combine(main_responses) |
          combine(config_responses) |
          combine(interface_responses) }}
   register: result
   failed_when: >-
     result.get('rc') != 255 or
+    "% Invalid input detected at '^' marker." in result.stdout_lines or
     '% Unrecognized command' in result.stdout_lines or
-    result.stdout_lines[-1] != 'Connection to ' ~ dell_powerconnect_switch_provider.host ~ ' closed.'
+    'Connection to ' ~ dell_powerconnect_switch_provider.host ~ ' closed.' not in result.stdout_lines[-1]
   with_dict: "{{ dell_powerconnect_switch_interface_config }}"
   vars:
+    enable_responses: "{{ {dell_powerconnect_enable_prompt: ['enable', 'exit']} }}"
     main_responses: "{{ {dell_powerconnect_main_prompt: ['configure', 'exit']} }}"
     config_responses: "{{ {dell_powerconnect_config_prompt: ['interface ' ~ item.key, 'exit']} }}"
     # Long config lines seem to confuse expect, so we add two exits.

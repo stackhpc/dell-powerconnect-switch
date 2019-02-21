@@ -21,6 +21,8 @@
     result.get('rc') != 255 or
     '% Unrecognized command' in result.stdout_lines or
     "% Invalid input detected at '^' marker." in result.stdout_lines or
+    "% missing mandatory parameter" in result.stdout_lines or
+    "% bad parameter value" in result.stdout_lines or
     'Connection to ' ~ dell_powerconnect_switch_provider.host ~ ' closed.' not in result.stdout_lines[-1]
   vars:
     enable_responses: "{{ {dell_powerconnect_enable_prompt: ['enable', 'exit']} }}"
@@ -42,6 +44,8 @@
     result.get('rc') != 255 or
     "% Invalid input detected at '^' marker." in result.stdout_lines or
     '% Unrecognized command' in result.stdout_lines or
+    "% missing mandatory parameter" in result.stdout_lines or
+    "% bad parameter value" in result.stdout_lines or
     'Connection to ' ~ dell_powerconnect_switch_provider.host ~ ' closed.' not in result.stdout_lines[-1]
   with_dict: "{{ dell_powerconnect_switch_interface_config }}"
   vars:
@@ -52,10 +56,12 @@
     interface_responses: >-
       {{ {dell_powerconnect_interface_prompt:
           (['description ' ~ item.value.description] if 'description' in item.value else []) +
+          (['name ' ~ item.value.name] if 'name' in item.value else []) +
           item.value.config | default([]) +
           ['exit', 'exit']} }}
   loop_control:
     label:
       interface: "{{ item.key }}"
       description:  "{{ item.value.description | default('<none>') }}"
+      name:  "{{ item.value.name | default('<none>') }}"
       config: "{{ item.value.config | default([]) }}"

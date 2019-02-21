@@ -6,6 +6,6 @@ dell_powerconnect_switch_provider:
 dell_powerconnect_switch_config: []
 
 # Interface configuration. Dict mapping switch interface names to configuration
-# dicts. Each dict contains a 'description' item and a 'config' item which
-# should contain a list of per-interface configuration.
+# dicts. Each dict contains a 'description' (or 'name' in case of vlans) item and 
+# a 'config' item which should contain a list of per-interface configuration.
 dell_powerconnect_switch_interface_config: {}

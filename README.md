@@ -32,6 +32,7 @@ It is a dict mapping switch interface names to configuration dicts. Each dict
 may contain the following items:
 
 - `description` - a description to apply to the interface.
+- `name` - a name to apply to the vlan interface, if you're configuring a vlan.
 - `config` - a list of per-interface configuration.
 
 Dependencies
@@ -78,6 +79,10 @@ ethernet interfaces as switchports.
               config:
                 - "no shutdown"
                 - "switchport"
+            "vlan 1234":
+              name: "mytestvlan"
+              config:
+                - "ip address 192.168.1.254 255.255.255.0"
 
 Author Information
 ------------------

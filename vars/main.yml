@@ -7,3 +7,6 @@ dell_powerconnect_enable_prompt: "{{ inventory_hostname }}>[\\s]?"
 dell_powerconnect_auth_responses:
   "User Name:": "{{ dell_powerconnect_switch_provider.username }}"
   "(?i).*Password:": "{{ dell_powerconnect_switch_provider.auth_pass }}"
+
+dell_powerconnect_write_responses:
+  "Overwrite file \\[startup\\-config\\] \\?\\[Yes\\/press any key for no\\]\\.\\.\\.\\.": "Y"

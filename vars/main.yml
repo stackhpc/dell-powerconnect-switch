@@ -1,8 +1,8 @@
 ---
-dell_powerconnect_main_prompt: "{{ inventory_hostname }}#[\\s]?"
-dell_powerconnect_config_prompt: "{{ inventory_hostname }}\\(config(-vlan)?\\)#[\\s]?"
-dell_powerconnect_interface_prompt: "{{ inventory_hostname }}\\(config-if.*\\)#[\\s]?"
-dell_powerconnect_enable_prompt: "{{ inventory_hostname }}>[\\s]?"
+dell_powerconnect_main_prompt: "([Cc]onsole|{{ inventory_hostname }})#[\\s]?"
+dell_powerconnect_config_prompt: "([Cc]onsole|{{ inventory_hostname }})\\(config(-vlan)?\\)#[\\s]?"
+dell_powerconnect_interface_prompt: "([Cc]onsole|{{ inventory_hostname }})\\(config-if.*\\)#[\\s]?"
+dell_powerconnect_enable_prompt: "([Cc]onsole|{{ inventory_hostname }})>[\\s]?"
 
 dell_powerconnect_auth_responses:
   "User Name:": "{{ dell_powerconnect_switch_provider.username }}"

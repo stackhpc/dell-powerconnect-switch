@@ -11,7 +11,7 @@ dell_powerconnect_switch_config: []
 dell_powerconnect_switch_interface_config: {}
 
 # When true, switch configuration will be written to the startup config file.
-write_memory: false
+dell_powerconnect_switch_write_memory: false
 
 # Change this to override the command to save switch configuration
-write_command: "write memory"
+dell_powerconnect_switch_write_command: "write memory"

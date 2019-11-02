@@ -85,5 +85,5 @@
     'Connection to ' ~ dell_powerconnect_switch_provider.host ~ ' closed.' not in result.stdout_lines[-1]
   vars:
     enable_responses: "{{ {dell_powerconnect_enable_prompt: ['enable', 'exit']} }}"
-    main_responses: "{{ {dell_powerconnect_main_prompt: [write_command, 'exit']} }}"
-  when: write_memory
+    main_responses: "{{ {dell_powerconnect_main_prompt: [dell_powerconnect_switch_write_command, 'exit']} }}"
+  when: dell_powerconnect_switch_write_memory | bool

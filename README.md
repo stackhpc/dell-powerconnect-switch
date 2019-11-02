@@ -35,6 +35,15 @@ may contain the following items:
 - `name` - a name to apply to the vlan interface, if you're configuring a vlan.
 - `config` - a list of per-interface configuration.
 
+`dell_powerconnect_switch_write_memory` is a boolean flag, which when set to true, 
+will save the switch's running configuration to the startup configuration file, 
+after the role applies its configuration. This will allow the configuration to 
+persist after a restart or power failure. By default, this option is set to false. 
+
+`dell_powerconnect_switch_write_command` is the command which is run when the flag 
+dell_powerconnect_switch_write_memory is set to true. The default command is 
+"write memory". 
+
 Dependencies
 ------------
 
@@ -45,8 +54,9 @@ Example Playbook
 
 The following playbook configures hosts in the `dell-powerconnect-switches`
 group.  It assumes host variables for each switch holding the host, username
-and passwords.  It applies global configuration for LLDP, and enables two 10G
-ethernet interfaces as switchports.
+and passwords.  It applies global configuration for LLDP, enables two 10G
+ethernet interfaces as switchports, and saves the configuration changes to
+memory. 
 
     ---
     - name: Ensure Dell PowerConnect switches are configured
@@ -54,6 +64,7 @@ ethernet interfaces as switchports.
       gather_facts: no
       roles:
         - role: dell-powerconnect-switch
+          dell_powerconnect_switch_write_memory: yes
           dell_powerconnect_switch_provider:
             host: "{{ switch_host }}"
             username: "{{ switch_user }}"

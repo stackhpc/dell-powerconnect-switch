@@ -9,3 +9,9 @@ dell_powerconnect_switch_config: []
 # dicts. Each dict contains a 'description' (or 'name' in case of vlans) item and 
 # a 'config' item which should contain a list of per-interface configuration.
 dell_powerconnect_switch_interface_config: {}
+
+# When true, switch configuration will be written to the startup config file.
+dell_powerconnect_switch_write_memory: false
+
+# Change this to override the command to save switch configuration
+dell_powerconnect_switch_write_command: "write memory"

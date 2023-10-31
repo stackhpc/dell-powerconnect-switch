@@ -1,7 +1,7 @@
 ---
 galaxy_info:
-  role_name: dell_powerconnect_switch
-  namespace: stackhpc
+# role_name: dell-powerconnect-switch
+# namespace: stackhpc
   author: Mark Goddard
   description: >
     Role to configure Dell PowerConnect switches
